@@ -1,6 +1,6 @@
 import pytest
 
-from background import task
+from fops.background import task
 
 
 def test_tasks_cannot_be_lambdas():

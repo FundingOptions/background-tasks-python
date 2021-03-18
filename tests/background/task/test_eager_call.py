@@ -3,12 +3,17 @@ import datetime
 import pytest
 from pydantic import ValidationError, validate_arguments
 
-from background.interface import ITask
+from fops.background.interface import ITask
 
-from .fake_tasks import (coerce_example, fake_task_multi_args,
-                         fake_task_multi_kwargs, fake_task_no_params,
-                         fake_task_one_arg, fake_task_one_arg_one_kwarg,
-                         fake_task_one_kwarg)
+from .fake_tasks import (
+    coerce_example,
+    fake_task_multi_args,
+    fake_task_multi_kwargs,
+    fake_task_no_params,
+    fake_task_one_arg,
+    fake_task_one_arg_one_kwarg,
+    fake_task_one_kwarg,
+)
 
 
 def _supports_multi_param_detection():

@@ -12,7 +12,7 @@ LOG = logging.getLogger(__name__)
 
 
 class LambdaTransport(ITransport):
-    def __init__(self, *, function_name: str, client: Any = None):
+    def __init__(self, *, function_name: str = None, client: Any = None):
         self.function_name = function_name or os.getenv("BACKGROUND_TASKS_LAMBDA_NAME")
         self.client = client or boto3.client("lambda")
 

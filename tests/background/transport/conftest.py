@@ -4,9 +4,9 @@ import boto3
 import pytest
 from botocore.stub import Stubber
 
-from background import dispatch
-from background.context import using_transport
-from background.transport.aws_lambda import LambdaTransport
+from fops.background import dispatch
+from fops.background.context import using_transport
+from fops.background.transport.aws_lambda import LambdaTransport
 
 
 @pytest.fixture

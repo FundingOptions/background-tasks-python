@@ -1,14 +1,17 @@
 [tool.poetry]
-name = "fops-background"
+name = "fops.background"
 version = "0.1.0"
 description = "Background Tasks implementation, primarily targeting AWS Lambda"
 authors = ["Anthony King <anthony.king@fundingoptions.com>"]
 license = "MIT"
+classifiers = ["Development Status :: 3 - Alpha"]
+packages = [{ include = 'fops/background' }]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.7"
 pydantic = "^1.8"
-boto3 = "^1.17.28"
+boto3 = "*"
+typing-extensions = "^3.7.4"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.2"

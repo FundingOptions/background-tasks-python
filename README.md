@@ -11,13 +11,14 @@ This provides a decorator for use, that wraps arbitrary functions.
 ## Defining a task
 
 ```py
-# tasks.py
+# your_module.tasks.py
 import requests
-from background import task
+from fops.background import task
+
 
 @task()
 def long_process(identifier: str, message: str):
-  requests.post(f"https://external.service.com/{identifier}", json={"message": message}).raise_for_status()
+    requests.post(f"https://external.service.com/{identifier}", json={"message": message}).raise_for_status()
 ```
 
 ### Restrictions
@@ -25,14 +26,15 @@ def long_process(identifier: str, message: str):
 Decorated tasks can only be stand-alone functions, the below examples are **not** valid.
 
 ```py
-# tasks.py
-from background import task
+# your_module.tasks.py
+from fops.background import task
+
 
 class CustomClass:
     @task()
     def long_process(self, identifier: str, message: str):
         pass
-    
+
 cc = CustomClass()
 
 # cannot be associated with a class
@@ -47,7 +49,8 @@ x = task()(lambda: None)
 Once a task is defined, you can call it in 2 ways:
 
 ```py
-from my_module.tasks import long_process
+# main.py
+from your_module.tasks import long_process
 
 # forced sync
 long_process("123ABC", "Order received")
@@ -65,8 +68,8 @@ Initial configuration lives within the `bootstrap.py` file.
 
 ```py
 # bootstrap.py
-from background import set_transport
-from background.transport import LambdaTransport
+from fops.background import set_transport
+from fops.background.transport import LambdaTransport
 
 lambda_transport = LambdaTransport(function_name='my-lambda-function-name')
 set_transport(lambda_transport)
@@ -77,8 +80,8 @@ and call the Transport with no arguments:
 
 ```py
 # bootstrap.py
-from background import set_transport
-from background.transport import LambdaTransport
+from fops.background import set_transport
+from fops.background.transport import LambdaTransport
 
 lambda_transport = LambdaTransport()
 set_transport(lambda_transport)
@@ -87,16 +90,17 @@ set_transport(lambda_transport)
 You can also temporarily use a backend transport with the `using_transport` context manager:
 
 ```py
-from background import using_transport
-from background.transport import EagerTransport
-from my_module.tasks import long_process
+# main.py
+from fops.background import using_transport
+from fops.background.transport import EagerTransport
+from your_module.tasks import long_process
 
 with using_transport(EagerTransport()):
     long_process.fire_and_forget(...)
 ```
 
 Configuration of the Lambda function is required before we can assign tasks to be run with the LambdaTransport.
-Using the [serverless](https://www.serverless.com/framework/docs/getting-started/) package you can configure the
+Using the [serverless](https://www.serverless.com/framework/docs/getting-started/) package you need to configure the
 `serverless.yml` file with a handler.
 
 ```yaml
@@ -109,13 +113,21 @@ functions:
     handler: my_module.tasks.handler
     name: "my-lambda-function-name"
     timeout: 120
+
+  other-function:
+    handler: main.handler
+
 ```
 
-We want this to reference the `.lambda_handler` function from our `LambdaHandler` instance:
+You want this to reference the `.lambda_handler` function from our `LambdaHandler` instance:
 
 ```python
-# my_module.tasks
+# your_module.tasks
 from bootstrap import lambda_transport
 
 handler = lambda_transport.lambda_handler
 ```
+
+### AWS Permissions
+
+The role assigned to your `other-function` needs the `lambda:InvokeFunction` permission enabled.

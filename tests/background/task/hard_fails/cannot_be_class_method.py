@@ -1,4 +1,4 @@
-from background import task
+from fops.background import task
 
 
 class Foo:

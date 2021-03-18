@@ -1,6 +1,7 @@
 from __future__ import annotations
 
-from typing import Callable, NamedTuple, Protocol, TypedDict, TypeVar
+from typing_extensions import Callable, Protocol, TypedDict, TypeVar
+from typing import NamedTuple
 
 # according to PEP 544: Protocol[...] must all be type variables
 SupportsTask = TypeVar("SupportsTask", bound=Callable[..., None])
