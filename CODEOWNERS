@@ -1,0 +1,4 @@
+* @FundingOptions/backend
+
+# deployment related files
+.github/ @FundingOptions/devops @FundingOptions/backend
