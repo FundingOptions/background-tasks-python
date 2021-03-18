@@ -28,14 +28,6 @@ def _supports_multi_param_detection():
         return True
 
 
-# https://github.com/samuelcolvin/pydantic/issues/2249
-XFAIL_NO_MULTI_PARAM_DETECTION = pytest.mark.xfail(
-    condition=not _supports_multi_param_detection(),
-    reason="Pydantic does not support Multi Param detection yet",
-    strict=True,
-)
-
-
 @pytest.fixture
 def spy_task_call(mocker):
     def inner(task: ITask):
@@ -103,8 +95,10 @@ def test_original_func_is_called_when_direct(fake_task, args, kwargs, spy_task_c
             (),
             {"never": 1},
         ),
-        pytest.param(
-            fake_task_one_kwarg, (1,), {"x": 2}, marks=XFAIL_NO_MULTI_PARAM_DETECTION
+        (
+            fake_task_one_kwarg,
+            (1,),
+            {"x": 2},
         ),
         (
             fake_task_one_arg_one_kwarg,
@@ -116,11 +110,10 @@ def test_original_func_is_called_when_direct(fake_task, args, kwargs, spy_task_c
             (),
             {"y": 3},
         ),
-        pytest.param(
+        (
             fake_task_one_arg_one_kwarg,
             (1,),
             {"x": 3},
-            marks=XFAIL_NO_MULTI_PARAM_DETECTION,
         ),
         (
             fake_task_multi_args,
@@ -138,24 +131,9 @@ def test_original_func_is_called_when_direct(fake_task, args, kwargs, spy_task_c
             (1, 2, 3),
             {},
         ),
-        pytest.param(
-            fake_task_multi_kwargs,
-            (1,),
-            {"x": 1},
-            marks=XFAIL_NO_MULTI_PARAM_DETECTION,
-        ),
-        pytest.param(
-            fake_task_multi_kwargs,
-            (1, 2),
-            {"y": 2},
-            marks=XFAIL_NO_MULTI_PARAM_DETECTION,
-        ),
-        pytest.param(
-            fake_task_multi_kwargs,
-            (1, 2),
-            {"x": 1, "y": 2},
-            marks=XFAIL_NO_MULTI_PARAM_DETECTION,
-        ),
+        (fake_task_multi_kwargs, (1,), {"x": 1}),
+        (fake_task_multi_kwargs, (1, 2), {"y": 2}),
+        (fake_task_multi_kwargs, (1, 2), {"x": 1, "y": 2}),
         (
             fake_task_multi_kwargs,
             (),
