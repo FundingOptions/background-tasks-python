@@ -29,7 +29,7 @@ jobs:
         poetry install --remove-untracked
     - name: Lint all the things
       run: |
-        poetry run -- make lint
+        poetry run make lint
     - name: Test all the things
       run: |
-        poetry run -- make test
+        poetry run make test
