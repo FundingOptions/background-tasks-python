@@ -6,6 +6,7 @@ authors = ["Anthony King <anthony.king@fundingoptions.com>"]
 license = "MIT"
 classifiers = ["Development Status :: 3 - Alpha"]
 packages = [{ include = 'fops/background' }]
+homepage = "https://github.com/FundingOptions/background-tasks-python"
 
 [tool.poetry.dependencies]
 python = "^3.7"
