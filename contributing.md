@@ -1,4 +1,4 @@
-# Contributing to Clean Actions
+# Contributing to Funding Options' Background Tasks
 
 Contributions are welcome, and they are greatly appreciated! Every little bit helps,
 and credit will always be given.
@@ -26,7 +26,7 @@ Look through the [GitHub issues][features] for features. Anything tagged with "e
 
 ### Write Documentation
 
-Clean Actions could always use more documentation, whether as part of the official
+We could always use more documentation, whether as part of the official
 docs, in docstrings, or even on the web in blog posts, articles, and such.
 
 ### Submit Feedback
@@ -37,11 +37,10 @@ If you are proposing a feature:
 - Explain in detail how it would work
 - Keep the scope as narrow as possible, to make it easier to implement
 - Try to give an example of what you're looking for
-- Remember that this is a volunteer-driven project, and that contributions are welcome
 
 ## Get Started
 
-Ready to contribute? Here's how to set up Clean Actions for local development.
+Ready to contribute? Here's how to get setup:
 
 1. Fork the repo on Github
 2. Clone your fork locally
@@ -87,9 +86,9 @@ This will run the pytest suite. Note that there are 2 important plugins loaded a
   (prevents order dependent tests)
 
 
-[issues]: https://github.com/cybojenix/clean-actions/issues
-[bugs]: https://github.com/cybojenix/clean-actions/issues?q=is:issue+label:bug
-[features]: https://github.com/cybojenix/clean-actions/issues?q=is:issue+label:enhancement
+[issues]: https://github.com/FundingOptions/background-tasks-python/issues
+[bugs]: https://github.com/FundingOptions/background-tasks-python/issues?q=is:issue+label:bug
+[features]: https://github.com/FundingOptions/background-tasks-python/issues?q=is:issue+label:enhancement
 [poetry]: https://github.com/python-poetry/poetry
 [poetry-installation]: https://github.com/python-poetry/poetry#installation
 [pytest-cov]: https://github.com/pytest-dev/pytest-cov
