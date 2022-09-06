@@ -10,9 +10,9 @@ homepage = "https://github.com/FundingOptions/background-tasks-python"
 
 [tool.poetry.dependencies]
 python = "^3.7"
-pydantic = "^1.8"
+pydantic = "^1.10.2"
 boto3 = "*"
-typing-extensions = "^3.7.4"
+typing-extensions = "^4.1.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.2"
