@@ -12,7 +12,7 @@ homepage = "https://github.com/FundingOptions/background-tasks-python"
 python = "^3.7"
 pydantic = "^1.10.2"
 boto3 = "*"
-typing-extensions = "*"
+typing-extensions = "^4.1.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.2"
