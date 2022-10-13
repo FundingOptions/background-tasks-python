@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "fops.background"
-version = "0.1.0"
+version = "0.2.0"
 description = "Background Tasks implementation, primarily targeting AWS Lambda"
 authors = ["Anthony King <anthony.king@fundingoptions.com>"]
 license = "MIT"
