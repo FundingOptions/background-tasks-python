@@ -39,6 +39,7 @@ class ITask(Protocol[SupportsTask]):
 
 class TaskEventPayload(TypedDict):
     body: str
+    is_celery: bool
 
 
 class TaskEventMeta(TypedDict, total=False):
