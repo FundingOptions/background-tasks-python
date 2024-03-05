@@ -50,7 +50,7 @@ class Task:
         validated_func = self.get_validated_function()
         instance = validated_func.model.parse_raw(payload["body"])
 
-        if payload.get("is_celery", False) and self.celery_app:
+        if self.celery_app:
             kwargs = instance.dict(exclude_unset=True)
             self.celery_task.delay(**kwargs)  # type: ignore
             return
@@ -78,9 +78,7 @@ class Task:
         instance = validated_func.model(**values)
         encoded = instance.json(exclude_unset=True)
 
-        is_celery = (
-            os.environ.get("BACKGROUND_TASKS_USE_CELERY", False) or self.celery_app
-        )
+        is_celery = bool(self.celery_app)
 
         return TaskEventPayload(body=encoded, is_celery=is_celery)
 
