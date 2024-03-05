@@ -32,7 +32,10 @@ class Task:
         # @celery_app.task() decorator.
         if self.celery_app:
             self.celery_task = self.celery_app.task(fn)
-        self.target_spec = TargetSpec(module=fn.__module__, name=fn.__name__,)
+        self.target_spec = TargetSpec(
+            module=fn.__module__,
+            name=fn.__name__,
+        )
         self.wrapped_func = validate_arguments(fn)
 
     def __call__(self, *args, **kwargs) -> None:
